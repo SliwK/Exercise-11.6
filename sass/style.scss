@@ -1,0 +1,75 @@
+$background-color: #69a19e;
+$button-color: #627b7a;
+$column-color: #3be2ae;
+$card-color: #15f0e8;
+
+body {
+  color: white;
+  background-color:$background-color;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.buttons {
+  border-radius: 10px;
+  border-style: none;
+  margin: 5px;
+}
+
+.create-column {
+  background-color: $button-color;
+  @extend .buttons;
+  width: 200px;
+}
+
+.add-card {
+  width: 100px;
+  background-color: $button-color;
+  @extend .buttons;
+}
+
+.btn-delete {
+  background-color: $button-color;
+  @extend .buttons;
+  border-radius: 50%;
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.board {
+  padding: 50px 0;
+}
+
+h1, h2 {
+  display: inline;
+}
+
+.create-column {
+  display: inline;
+}
+
+.column-container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  background-color: $column-color;
+  margin: 5px;
+  padding: 20px 20px;
+}
+
+.column-card-list {
+  padding: 5px;
+
+}
+.card {
+  background-color: $card-color;
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  list-style: none;
+}
+
+.footer {
+  text-align: center;
+}

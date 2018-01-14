@@ -99,6 +99,7 @@ function createCard() {
 Card.prototype = {
 	removeCard: function() {
 		this.$element.remove();
+    checkArchiveVisibility();
   },
   moveCard: function(){   //dodane - działa tylko w stronę Archived
     var destinationColumnId = "#Archived";

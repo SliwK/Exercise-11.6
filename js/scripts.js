@@ -42,7 +42,7 @@ function Column(name) {
 
           $columnAddCard.click(function(event) {
               var input = prompt("Enter the name of the card");
-              if(input === null){
+              if(input === null || input.length == 0){
                 return;
               } else {
               self.addCard(new Card(input));
@@ -129,7 +129,7 @@ function initSortable() {
  $('.create-column')
   .click(function(){
     	var name = prompt('Enter a column name');
-      if(name === null){
+      if(name === null || name.length == 0){
         return;
       } else {
         var column = new Column(name);

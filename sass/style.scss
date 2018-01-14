@@ -6,7 +6,7 @@ $card-color: #15f0e8;
 body {
   color: white;
   background-color:$background-color;
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Kavivanar', cursive;
 }
 
 .buttons {
@@ -27,7 +27,7 @@ body {
   @extend .buttons;
 }
 
-.btn-delete {
+.btn-delete, .btn-archive {
   background-color: $button-color;
   @extend .buttons;
   border-radius: 50%;
@@ -68,6 +68,10 @@ h1, h2 {
   margin: 5px;
   padding: 10px;
   list-style: none;
+}
+
+ul{
+  height: 100%;
 }
 
 .footer {

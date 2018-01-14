@@ -1,9 +1,9 @@
 body {
   color: white;
   background-color: #69a19e;
-  font-family: 'Gloria Hallelujah', cursive; }
+  font-family: 'Kavivanar', cursive; }
 
-.buttons, .create-column, .add-card, .btn-delete {
+.buttons, .create-column, .add-card, .btn-delete, .btn-archive {
   border-radius: 10px;
   border-style: none;
   margin: 5px; }
@@ -16,7 +16,7 @@ body {
   width: 100px;
   background-color: #627b7a; }
 
-.btn-delete {
+.btn-delete, .btn-archive {
   background-color: #627b7a;
   border-radius: 50%;
   font-size: 10px;
@@ -49,6 +49,9 @@ h1, h2 {
   margin: 5px;
   padding: 10px;
   list-style: none; }
+
+ul {
+  height: 100%; }
 
 .footer {
   text-align: center; }

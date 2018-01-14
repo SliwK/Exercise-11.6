@@ -150,6 +150,9 @@ board.addColumn(doingColumn);
 board.addColumn(doneColumn);
 board.addColumn(archiveColumn);
 
+var testID = doingColumn.id; //Jak to wykorzystać do odwołania się do kolumny (czyli jak w tym przypadku do kolumny doing?)
+console.log("to id kolumny doing: "+ testID);
+
   // CREATING CARDS
 var card1 = new Card('New task');
 var card2 = new Card('Create kanban boards');

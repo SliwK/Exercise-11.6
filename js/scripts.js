@@ -30,7 +30,7 @@ function Column(name) {
     this.$element = createColumn();
 
     function createColumn() {
-        	var $column = $('<div>').addClass('column').attr("id", self.name);
+        	var $column = $('<div>').addClass('column').attr("id", self.name).attr("data-column",self.id);
           var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
           var $columnCardList = $('<ul>').addClass('column-card-list');
           var $columnDelete = $('<button>').addClass('btn-delete').text('x');
@@ -42,11 +42,9 @@ function Column(name) {
 
           $columnAddCard.click(function(event) {
               var input = prompt("Enter the name of the card");
-              if(input === null || input.length == 0){
-                return;
-              } else {
-              self.addCard(new Card(input));
-            }
+              if(input !== null || input.length !== 0){
+                self.addCard(new Card(input));
+              }
           });
 
           $column.append($columnTitle)
@@ -101,13 +99,30 @@ Card.prototype = {
 		this.$element.remove();
     checkArchiveVisibility();
   },
-  moveCard: function(){   //dodane - działa tylko w stronę Archived
+  moveCard: function(){
+    var originColumnId = $(this.$element).parents("div").attr("data-column");
+    console.log("id kolumny matki: " +originColumnId);
     var destinationColumnId = "#Archived";
-    var destinationColumn = $(destinationColumnId).find("ul");
-    $(destinationColumn).append(this.$element);
-
+    var currentColumn = $(this.$element).parents("div").attr("id");
+    console.log("#"+currentColumn);
+    console.log(destinationColumnId);
+    if(destinationColumnId !== "#"+currentColumn) {
+      console.log("przesyłka do archiwum");
+      var destinationColumn = $(destinationColumnId).find("ul");
+      $(this.$element).attr("data-card", originColumnId);
+      $(destinationColumn).append(this.$element);
+    } else {
+        console.log("odarchiwizowanie");
+        var previousColumnId = $(this.$element).attr("data-card");
+        console.log(previousColumnId);
+        var previousColumn = $("[data-column = '" +previousColumnId+ "']").find("ul");
+        console.log("id kolumny poprzedniej: " +previousColumn.length);
+        $(previousColumn).append(this.$element);
+    }
     checkArchiveVisibility();
     }
+
+
 };
 
 var board = {
@@ -130,12 +145,10 @@ function initSortable() {
  $('.create-column')
   .click(function(){
     	var name = prompt('Enter a column name');
-      if(name === null || name.length == 0){
-        return;
-      } else {
+      if(name !== null || name.length !== 0){
         var column = new Column(name);
         board.addColumn(column);
-    }
+      }
   });
 
 
@@ -150,9 +163,6 @@ board.addColumn(todoColumn);
 board.addColumn(doingColumn);
 board.addColumn(doneColumn);
 board.addColumn(archiveColumn);
-
-var testID = doingColumn.id; //Jak to wykorzystać do odwołania się do kolumny (czyli jak w tym przypadku do kolumny doing?)
-console.log("to id kolumny doing: "+ testID);
 
   // CREATING CARDS
 var card1 = new Card('New task');

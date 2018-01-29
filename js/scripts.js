@@ -9,13 +9,13 @@ function randomString() {
   for (var i = 0; i < 10; i++) {
       str += chars[Math.floor(Math.random() * chars.length)];
   }
-  console.log("generated id :" +str);
+//  console.log("generated id :" +str);
   if(idList.indexOf(str) == -1) {
     var saveId = idList.push(str);
-    console.log(idList);
+//    console.log(idList);
     return str;
   } else {
-    console.log("id already exists - generate new one!");
+//    console.log("id already exists - generate new one!");
     randomString();
   }
 
@@ -101,22 +101,15 @@ Card.prototype = {
   },
   moveCard: function(){
     var originColumnId = $(this.$element).parents("div").attr("data-column");
-    console.log("id kolumny matki: " +originColumnId);
     var destinationColumnId = "#Archived";
     var currentColumn = $(this.$element).parents("div").attr("id");
-    console.log("#"+currentColumn);
-    console.log(destinationColumnId);
     if(destinationColumnId !== "#"+currentColumn) {
-      console.log("przesyłka do archiwum");
       var destinationColumn = $(destinationColumnId).find("ul");
       $(this.$element).attr("data-card", originColumnId);
       $(destinationColumn).append(this.$element);
     } else {
-        console.log("odarchiwizowanie");
         var previousColumnId = $(this.$element).attr("data-card");
-        console.log(previousColumnId);
         var previousColumn = $("[data-column = '" +previousColumnId+ "']").find("ul");
-        console.log("id kolumny poprzedniej: " +previousColumn.length);
         $(previousColumn).append(this.$element);
     }
     checkArchiveVisibility();
@@ -175,7 +168,6 @@ doingColumn.addCard(card2);
 
 function checkArchiveVisibility() {
   var anythingArchived = $("#Archived").find("li").length;
-  console.log(anythingArchived);
   if(anythingArchived == 0){
     $("#Archived").hide();
   } else {
